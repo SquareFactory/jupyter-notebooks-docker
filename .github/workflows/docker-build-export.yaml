@@ -29,9 +29,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/squarefactory/${{ inputs.image }}
+          flavor: |
+            latest=true
+          images: |
+            ghcr.io/squarefactory/${{ inputs.image }}
           tags: |
             type=schedule,pattern={{date 'YYYYMMDD'}}
+            type=semver,pattern={{version}}
 
       - name: Build and export
         uses: docker/build-push-action@v3
