@@ -1,0 +1,14 @@
+name: Docker CI
+
+on:
+  schedule:
+    # Monthly, at 06:00 on the first day of the month
+    - cron: '0 6 1 * *'
+  push:
+  pull_request:
+
+jobs:
+  datascience-desktop-notebook:
+    uses: ./.github/workflows/docker-build-export.yaml
+    with:
+      image: datascience-desktop-notebook
